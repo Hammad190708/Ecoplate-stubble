@@ -6,77 +6,197 @@
   <title>EcoPlate - Say No to Stubble Burning</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
     body {
       font-family: 'Rajdhani', sans-serif;
-      background: linear-gradient(to right, #0f1f0f, #1c3f2f);
-      color: #f0f0f0;
-      padding: 20px;
-      line-height: 1.6;
+      background: linear-gradient(135deg, #0d1b2a, #1b4332);
+      background-size: 400% 400%;
+      animation: bgScroll 30s ease infinite;
+      color: #e9f5e9;
+      line-height: 1.7;
     }
+    @keyframes bgScroll {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    nav {
+      background-color: rgba(0, 50, 30, 0.9);
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 0 10px #7fff7f;
+    }
+    nav h2 {
+      color: #7fff7f;
+      font-family: 'Orbitron', sans-serif;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+    nav ul li a {
+      color: #d0ffd0;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav ul li a:hover {
+      color: #baffc9;
+    }
+
+    .hero {
+      background: url('https://images.unsplash.com/photo-1559535332-3a4c3c1d6208?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+      background-size: cover;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+      color: #eaffea;
+      font-family: 'Orbitron', sans-serif;
+      box-shadow: inset 0 0 200px rgba(0,0,0,0.5);
+    }
+    .hero h1 {
+      font-size: 3.5em;
+      text-shadow: 0 0 10px #00ff99;
+    }
+    .hero p {
+      font-size: 1.5em;
+      margin-top: 20px;
+    }
+
     header {
       text-align: center;
-      margin-bottom: 40px;
+      padding: 60px 20px 30px 20px;
     }
     h1 {
       font-family: 'Orbitron', sans-serif;
       font-size: 4em;
-      letter-spacing: 4px;
       color: #90ee90;
-      border-bottom: 3px solid #2ecc71;
-      display: inline-block;
-      padding-bottom: 10px;
+      text-shadow: 0 0 12px #00ff99;
+      margin-bottom: 15px;
     }
     .tagline {
-      font-size: 1.3em;
-      color: #aaffaa;
-      margin-top: 10px;
+      font-size: 1.5em;
+      color: #caffca;
+      animation: fadeIn 2s ease-in-out;
     }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     .content-section {
       max-width: 1000px;
       margin: 0 auto 60px auto;
-      background: rgba(0, 50, 0, 0.2);
+      background: rgba(20, 60, 40, 0.3);
       padding: 40px;
-      border-radius: 14px;
-      border-left: 6px solid #4caf50;
-      box-shadow: 0 0 25px rgba(76, 175, 80, 0.3);
-      transition: transform 0.3s ease;
+      border-radius: 16px;
+      border-left: 6px solid #7fff7f;
+      box-shadow: 0 0 20px rgba(144, 238, 144, 0.3);
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.6s ease;
     }
-    .content-section:hover {
-      transform: scale(1.01);
+    .content-section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
     .content-section h2 {
-      color: #b6ffb6;
-      border-bottom: 1px solid #66bb6a;
-      padding-bottom: 8px;
+      color: #baffc9;
       margin-bottom: 20px;
       font-size: 1.8em;
+      border-bottom: 2px solid #98fb98;
+      padding-bottom: 10px;
     }
+
     ul, ol {
-      padding-left: 20px;
+      padding-left: 25px;
     }
+
     footer {
       text-align: center;
       font-size: 0.9em;
-      color: #aaffaa;
-      margin-top: 60px;
+      color: #c8facc;
+      margin-top: 80px;
+      padding-top: 20px;
+      border-top: 1px solid #90ee90;
     }
+
     a {
-      color: #00ff99;
+      color: #afffaf;
       text-decoration: none;
     }
     a:hover {
       text-decoration: underline;
+      color: #ddffdd;
+    }
+
+    #topBtn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: #98fb98;
+      color: #001f1f;
+      border: none;
+      padding: 12px 20px;
+      font-size: 1em;
+      border-radius: 50px;
+      cursor: pointer;
+      display: none;
+      box-shadow: 0 0 15px #7fff7f;
+    }
+    #topBtn:hover {
+      background-color: #baffc9;
+    }
+
+    .counter {
+      font-size: 2em;
+      color: #caffca;
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    @media (max-width: 768px) {
+      nav ul { flex-direction: column; gap: 10px; }
+      h1 { font-size: 2.5em; }
+      .tagline { font-size: 1.1em; }
     }
   </style>
 </head>
 <body>
+
+  <nav>
+    <h2>EcoPlate</h2>
+    <ul>
+      <li><a href="#vision">Vision</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#impact">Impact</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div>
+      <h1>Turning Waste Into Life</h1>
+      <p>One Plate at a Time</p>
+    </div>
+  </section>
+
   <header>
     <h1>ECOPLATE</h1>
     <p class="tagline">A Green Revolution Against Stubble Burning</p>
   </header>
 
-  <div class="content-section">
+  <div class="content-section" id="vision">
     <h2>Our Vision</h2>
     <p>We envision a world where agricultural waste no longer pollutes our skies. By converting stubble into sustainable and biodegradable products, we protect our environment while empowering farmers.</p>
   </div>
@@ -92,7 +212,7 @@
     </ul>
   </div>
 
-  <div class="content-section">
+  <div class="content-section" id="products">
     <h2>Our Products</h2>
     <ol>
       <li><strong>Eco Plates:</strong> 100% biodegradable, microwave-safe, and leak-proof.</li>
@@ -112,21 +232,18 @@
     </ol>
   </div>
 
-  <div class="content-section">
+  <div class="content-section" id="impact">
     <h2>Environmental Impact</h2>
     <p>Every ton of stubble reused through our process prevents nearly 1.5 tons of carbon emissions. Our mission aims to save over 50,000 tons of stubble from being burnt each year.</p>
+    <div class="counter">
+      🌳 Trees planted so far: <span id="treeCount">38,456</span>
+    </div>
   </div>
 
   <div class="content-section">
     <h2>From Waste to Wilderness 🌱</h2>
     <p>What if a plate could grow into a tree? With EcoPlate, it can.</p>
     <p>Our biodegradable plates contain real plant seeds embedded inside. After use, when the plate is discarded in soil, it decomposes naturally and nurtures the seed within. This transforms ordinary waste into a living tree — making every meal a step toward reforesting our planet.</p>
-    <ul>
-      <li>Plates contain native seeds chosen for local climates</li>
-      <li>Encourages users to dispose of plates responsibly</li>
-      <li>Each product contributes to carbon offset and biodiversity</li>
-    </ul>
-    <p><em>EcoPlate is more than a product — it’s a tree in waiting.</em></p>
   </div>
 
   <div class="content-section">
@@ -134,16 +251,43 @@
     <p>Whether you're a consumer, farmer, investor, or student — there’s a role for you in this green movement. EcoPlate is more than a product — it’s a purpose. Let’s protect our Earth together, one plate at a time.</p>
   </div>
 
-  <div class="content-section">
+  <div class="content-section" id="contact">
     <h2>Contact Us</h2>
-    <p>🌐 Website: <a href="#">www.ecoplates.org</a><br>📧 Email: contact@ecoplates.org<br>📞 Phone: +91-9876543210</p>
+    <p>🌐 Website: <a href="#">www.ecoplates.org</a><br>
+    📧 Email: contact@ecoplates.org<br>
+    📞 Phone: +91-9876543210</p>
   </div>
 
   <footer>
     © 2025 EcoPlate | Designed for a greener tomorrow.
   </footer>
+
+  <button id="topBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">⬆ Top</button>
+
+  <script>
+    const sections = document.querySelectorAll('.content-section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.2 });
+    sections.forEach(section => observer.observe(section));
+
+    const topBtn = document.getElementById('topBtn');
+    window.onscroll = () => {
+      topBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+    };
+
+    let count = 38456;
+    setInterval(() => {
+      count += Math.floor(Math.random() * 3);
+      document.getElementById("treeCount").textContent = count.toLocaleString();
+    }, 3000);
+  </script>
+
 </body>
 </html>
+
 
 
 
